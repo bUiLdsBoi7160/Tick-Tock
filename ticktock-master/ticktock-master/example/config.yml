@@ -1,0 +1,39 @@
+timezone: America/New_York
+
+admin:
+  username: username
+  password: password
+  
+tasks:
+  - title: Do Something
+    description: It does something very important.
+    id: do_something
+    interval: every 10 seconds
+    type: run
+    image: mhart/alpine-node:8.6.0
+    command: ["ls", "-al"]
+    overlap: false
+    enabled: true
+    execute_on_start: false
+  - title: List Running Processes
+    description: It lists running processes.
+    id: list_processes
+    interval: "* */1 * * *"
+    type: run
+    image: mhart/alpine-node:8.6.0
+    command: ["ps", "aux"]
+    overlap: false
+    enabled: true
+    execute_on_start: false
+email:
+  smtp:
+    from_name: TickTock
+    from_email: ticktock@localhost.site
+    config:
+      host: maildev
+      port: 25
+      secure: false
+      tls:
+        secure: false
+        ignoreTLS: true
+        rejectUnauthorized: false
